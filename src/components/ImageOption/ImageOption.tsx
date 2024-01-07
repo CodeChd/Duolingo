@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Text,
     View,
@@ -6,11 +7,11 @@ import {
 import styles from './styles';
 
 
-const ImageOption = ({ name, image }: { name: string, image: string }): React.JSX.Element => {
+const ImageOption = ({ name, image, isSelected = false }: { name: string, image: string, isSelected: boolean }): React.JSX.Element => {
     return (
-        <View style={styles.optionContainer}>
-            <Image source={{ uri: `${image}` }} style={styles.optionImage} resizeMode='contain' />
-            <Text style={styles.optionText}>{name}</Text>
+        <View style={[styles.optionContainer, isSelected ? styles.selectedContainer : {}]}>
+            <Image source={{ uri: image }} style={styles.optionImage} resizeMode='contain' />
+            <Text style={isSelected ? styles.selectedText : styles.optionText}>{name}</Text>
         </View>
     )
 }

@@ -5,7 +5,7 @@
  * @format
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,17 +19,11 @@ import {
 
 import { styles } from './styles';
 import ImageOption from './src/components/ImageOption';
-
-
-const images = [
-  { image: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/cup.png", name: "Cup" },
-  { image: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/glass.png", name: "Glass" },
-  { image: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/milk.png", name: "Milk" },
-  { image: "https://fsmd-assets.s3.eu-west-1.amazonaws.com/duolingo/images/coffee.png", name: "Coffe" }
-]
+import items from './data/items';
 
 
 function App(): React.JSX.Element {
+  const [selected, setIsSelected] = useState(items[0].name)
 
   return (
     <View style={styles.root}>
@@ -37,8 +31,8 @@ function App(): React.JSX.Element {
 
       <View style={styles.optionsContainer}>
         {
-          images.map((item) => (
-            <ImageOption key={item.name} name={item.name} image={item.image} />
+          items.map((item) => (
+            <ImageOption key={item.name} name={item.name} image={item.image} isSelected={selected === item.name} />
           ))
         }
       </View>
